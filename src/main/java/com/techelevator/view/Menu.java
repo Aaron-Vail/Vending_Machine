@@ -25,7 +25,7 @@ public class Menu {
 		return choice;
 	}
 
-	public BigDecimal getDecimalFromUser(String message) {
+	public BigDecimal getDecimalFromUser(String message) {  //use this format to ask simple questions.
 		BigDecimal inputtedDecimal = null;
 		out.println(message);
 		do {
