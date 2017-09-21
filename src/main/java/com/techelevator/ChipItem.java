@@ -1,12 +1,17 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class ChipItem extends Product {
 
+	public ChipItem(String name, BigDecimal price) {
+		super(name, price);
+	}
+	
 	@Override
 	public String getSound() {
-		setName();
-		setPrice();
-		setSound("Crunch, Crunch, Yum!");
+
+		return "Crunch, Crunch, Yum!";
 	}
 
 }
