@@ -3,7 +3,6 @@ package com.techelevator;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ import java.util.Scanner;
 
 public class WriteFile {
 	
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+	//private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
 	private String path;
 	private boolean appendToFile = false;
 	
