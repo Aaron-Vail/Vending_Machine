@@ -1,37 +1,50 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class VendingMachine {
 
-	private Map<String, List<Product>> inventory = null; // Map passed from CLI
-	private List<Product> purchases = new ArrayList<>(); // List to hold customer purchases
+	private Map<String, Stack<Product>> inventory = null; // Map passed from CLI
+	//private Stack<Product> purchases = new Stack<>(); // List to hold customer purchases
 	private BigDecimal currentBalance = new BigDecimal("0.00");
 	
-	public VendingMachine(Map<String, List<Product>> inventory) { // Constructor
+	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
 	}
 	
+	@Override
 	public String toString() {
 		String display = null;
 		
-		for (Map.Entry<String, List<Product>> entry : inventory.entrySet()) {
+		for (Map.Entry<String, Stack<Product>> entry : inventory.entrySet()) {
 			display = entry.getKey() + " " + entry.getValue() + "\n";
 		}
 		return display;
 	}
+	
 	public BigDecimal balance() {
 		
-		return currentBalance.subtract();
+		return currentBalance;
 	}
 	
 	public void addMoney(BigDecimal dollars) { // change return ??
 		currentBalance = currentBalance.add(dollars);
 	}
 	
+	public BigDecimal getProductPrice(String slot) {
+		BigDecimal itemPrice = null;
+		itemPrice = this.inventory.get(slot).peek().getPrice();
+		return itemPrice;
+	}
+	
+	public String getProductName(String slot) {
+		String productName =  null;
+		productName = this.inventory.get(slot).peek().getName();
+		return productName;
+	}
 //	public Product purchase(String slot) {
 //		
 //		
@@ -48,3 +61,4 @@ public class VendingMachine {
 //		return // return true or false if item is sold out
 //	}
 }
+

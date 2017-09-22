@@ -1,5 +1,8 @@
 package com.techelevator;
 
+import java.util.Map;
+import java.util.Stack;
+
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -22,14 +25,16 @@ public class VendingMachineCLI {
 	private static final String FEED_MONEY_OPTION_RETURN_TO_PURCHASE_MENU ="Return to Purchase menu";
 	private static final String[] FEED_MONEY_OPTIONS = {FEED_MONEY_OPTION_FEED_MONEY,
 														FEED_MONEY_OPTION_RETURN_TO_PURCHASE_MENU};
-//	private static final String SELECT_VM_ITEMS_CHIPS = "Chips";
-//	private static final String SELECT_VM_ITEMS_CANDY = "Candy"; 
-//	private static final String SELECT_VM_ITEMS_DRINKS = "Drinks";
-//	private static final String SELECT_VM_ITEMS_GUM = "Gum";
-//	private static final String[] SELECT_VM_ITEMS_OPTIONS = {SELECT_VM_ITEMS_CHIPS,
-//															SELECT_VM_ITEMS_CANDY,
-//															SELECT_VM_ITEMS_DRINKS,
-//															SELECT_VM_ITEMS_GUM};
+	private static final String SELECT_VM_ITEMS_CHIPS = "Chips";
+	private static final String SELECT_VM_ITEMS_CANDY = "Candy"; 
+	private static final String SELECT_VM_ITEMS_DRINKS = "Drinks";
+	private static final String SELECT_VM_ITEMS_GUM = "Gum";
+	private static final String SELECT_VM_ITEMS_Return = "Return to previous menu";
+	private static final String[] SELECT_VM_ITEMS_OPTIONS = {SELECT_VM_ITEMS_CHIPS,
+															SELECT_VM_ITEMS_CANDY,
+															SELECT_VM_ITEMS_DRINKS,
+															SELECT_VM_ITEMS_GUM,
+															SELECT_VM_ITEMS_Return};
 	
 	private Menu menu;
 	private VendingMachine newVM = null;
@@ -45,6 +50,30 @@ public class VendingMachineCLI {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 			
 			if(choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
+				String choice1 = (String)menu.getChoiceFromOptions(SELECT_VM_ITEMS_OPTIONS);
+				
+				while(true) {
+					if(choice1.equals(SELECT_VM_ITEMS_CHIPS)) {
+						for (int i = 1; i < 5; i++) {
+							System.out.println("A" + i + " " + newVM.getProductName("A" + i) + " $" + newVM.getProductPrice("A" + i));
+						}
+						break;
+					}
+					else if (choice1.equals(SELECT_VM_ITEMS_CANDY)) {
+						
+					}
+					else if (choice1.equals(SELECT_VM_ITEMS_DRINKS)) {
+						
+					}
+					else if (choice1.equals(SELECT_VM_ITEMS_GUM)) {
+						
+					}
+					else {
+						break;
+					}
+				}
+							
+			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				String choice2 = (String)menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				
 				while (true) {
@@ -65,8 +94,6 @@ public class VendingMachineCLI {
 						}
 					}
 				}
-			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				
 					
 				
 			}
