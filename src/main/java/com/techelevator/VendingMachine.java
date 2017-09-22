@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -9,9 +10,14 @@ import java.util.Stack;
 public class VendingMachine {
 
 	private Map<String, Stack<Product>> inventory = null; // Map passed from CLI
-	//private Stack<Product> purchases = new Stack<>(); // List to hold customer purchases
+	private List<Product> purchases = new ArrayList<>(); // List to hold customer purchases
 	private BigDecimal currentBalance = new BigDecimal("0.00");
+<<<<<<< HEAD
 	private WriteFile data = new WriteFile("log.txt", true);
+=======
+	private boolean soldOut = false;
+	
+>>>>>>> fb941f740199d163719ab857040e5348d116b8d7
 	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
 	}
@@ -26,15 +32,14 @@ public class VendingMachine {
 		return display;
 	}
 	
-	public BigDecimal balance() {
+	public BigDecimal getBalance() {
 		
 		return currentBalance;
 	}
 	
 	public void addMoney(BigDecimal dollars) { // change return ??
 		currentBalance = currentBalance.add(dollars);
-	try{							 //Date			Time		Action	   Add	 Bal
-		 							 //01/01/2016 12:00:00 PM FEED MONEY: $5.00 $5.00
+	try{							 
 		data.writeToFile("ADD MONEY" + "$" + dollars + "$" + currentBalance);
 	}
 	catch (IOException e) { 
@@ -53,20 +58,47 @@ public class VendingMachine {
 		productName = this.inventory.get(slot).peek().getName();
 		return productName;
 	}
-//	public Product purchase(String slot) {
-//		
-//		
-//		return Product; //return a product variable
-//	}	
-//	
-//	public Change completeTransaction() {
-//		
-//		return Change; // return a change variable
-//	}
-//	
-//	public boolean isSoldOut(String slot) {
-//		
-//		return // return true or false if item is sold out
-//	}
+	
+	public int getProductQuant(String slot) {
+		int productQuant = this.inventory.get(slot).size();
+		return productQuant;
+	}
+	
+	public void purchase(String slot) {
+		if (currentBalance.compareTo(getProductPrice(slot)) == -1 ) {
+			System.out.println("Insufficient Funds.");
+		}
+		
+		else {
+			BigDecimal temp = currentBalance;
+			currentBalance = currentBalance.subtract(getProductPrice(slot));
+			purchases.add(this.inventory.get(slot).pop());
+		try{							
+				data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+			}
+		catch (IOException e) { 
+				System.out.println(e.getMessage());
+			}
+		}
+	}	
+
+	public void finishTransaction() {
+		 
+		// return customer's money  change()
+		
+		// currentBalance updated to $0
+		
+		// the purchases will be "consumed"
+	}
+	
+	public boolean isSoldOut(String slot) {
+		if (getProductQuant(slot) == 0) {
+			soldOut = true;
+		}
+		else {
+			soldOut = false;
+		}
+		return soldOut;
+	}
 }
 

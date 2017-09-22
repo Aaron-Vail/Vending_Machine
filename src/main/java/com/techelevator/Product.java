@@ -3,6 +3,7 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public abstract class Product {
+	@SuppressWarnings("unused")
 	private String sound;
 	private String name;
 	private BigDecimal price;
