@@ -61,13 +61,24 @@ public class VendingMachineCLI {
 						break;
 					}
 					else if (choice1.equals(SELECT_VM_ITEMS_CANDY)) {
-						
+						for (int i = 1; i < 5; i++) {
+							System.out.println("B" + i + " " + newVM.getProductName("B" + i) + " $" + newVM.getProductPrice("B" + i));
+						}
+						break;
 					}
+						
 					else if (choice1.equals(SELECT_VM_ITEMS_DRINKS)) {
-						
+						for (int i = 1; i < 5; i++) {
+							System.out.println("C" + i + " " + newVM.getProductName("C" + i) + " $" + newVM.getProductPrice("C" + i));
+						}
+						break;
 					}
-					else if (choice1.equals(SELECT_VM_ITEMS_GUM)) {
 						
+					else if (choice1.equals(SELECT_VM_ITEMS_GUM)) {
+						for (int i = 1; i < 5; i++) {
+							System.out.println("D" + i + " " + newVM.getProductName("D" + i) + " $" + newVM.getProductPrice("D" + i));
+						}
+						break;
 					}
 					else {
 						break;
