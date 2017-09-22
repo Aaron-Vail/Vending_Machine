@@ -45,6 +45,11 @@ public class VendingMachine {
 		productName = this.inventory.get(slot).peek().getName();
 		return productName;
 	}
+	
+	public int getProductQuant(String slot) {
+		int productQuant = this.inventory.get(slot).size();
+		return productQuant;
+	}
 //	public Product purchase(String slot) {
 //		
 //		

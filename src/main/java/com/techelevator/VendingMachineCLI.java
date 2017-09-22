@@ -55,8 +55,9 @@ public class VendingMachineCLI {
 				while(true) {
 					if(choice1.equals(SELECT_VM_ITEMS_CHIPS)) {
 						for (int i = 1; i < 5; i++) {
-							System.out.println("A" + i + " " + newVM.getProductName("A" + i) + " $" + newVM.getProductPrice("A" + i));
-						}
+							//System.out.println("A" + i + "  " + newVM.getProductName("A" + i) + "  $" + newVM.getProductPrice("A" + i) + "  (" + newVM.getProductQuant("A" + i) + ")");
+							System.out.println(String.format("%-5s %-25s %1s %-5s %1s %1d %1s", "A"+ i, newVM.getProductName("A" + i), "$", newVM.getProductPrice("A" + i), "(", newVM.getProductQuant("A" + i), ")"));
+						}  
 						break;
 					}
 					else if (choice1.equals(SELECT_VM_ITEMS_CANDY)) {
