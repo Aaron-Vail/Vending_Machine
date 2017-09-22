@@ -9,10 +9,12 @@ public class Change {
 	private int nickels = 0;
 	private int convChange = 0;
 	
+
 	public void getChange(BigDecimal change){
 		convChange = change.multiply(new BigDecimal("100")).intValueExact();
 		
 	while (convChange >= 25){
+
         quarters = quarters + 1;
         convChange = convChange - 25;
     }
@@ -26,7 +28,7 @@ public class Change {
     }
 //    System.out.printf("\nHere's your change:\n%d quarters, %d dimes, %d nickels and %d pennies!",
 //        quarters, dimes, nickels, change);
-}
+	}
 
 	@Override
 	public String toString() {
