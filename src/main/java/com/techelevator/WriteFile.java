@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Scanner;
 
 
 
@@ -26,6 +25,7 @@ public class WriteFile {
 		appendToFile = appendValue;
 		}
 	
+	@SuppressWarnings("deprecation")
 	public void writeToFile(String textLine) throws IOException {
 		
 		FileWriter write = new FileWriter(path, appendToFile);

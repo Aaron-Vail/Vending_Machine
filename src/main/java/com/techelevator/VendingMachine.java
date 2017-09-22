@@ -12,12 +12,12 @@ public class VendingMachine {
 	private Map<String, Stack<Product>> inventory = null; // Map passed from CLI
 	private List<Product> purchases = new ArrayList<>(); // List to hold customer purchases
 	private BigDecimal currentBalance = new BigDecimal("0.00");
-<<<<<<< HEAD
+
 	private WriteFile data = new WriteFile("log.txt", true);
-=======
+
 	private boolean soldOut = false;
 	
->>>>>>> fb941f740199d163719ab857040e5348d116b8d7
+
 	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
 	}
@@ -65,21 +65,33 @@ public class VendingMachine {
 	}
 	
 	public void purchase(String slot) {
-		if (currentBalance.compareTo(getProductPrice(slot)) == -1 ) {
-			System.out.println("Insufficient Funds.");
+		if (inventory.containsKey(slot)) {
+			if (currentBalance.compareTo(getProductPrice(slot)) >= 0 ) {
+				if (inventory.get(slot).size() > 0) {
+					BigDecimal temp = currentBalance;
+					currentBalance = currentBalance.subtract(getProductPrice(slot));
+					purchases.add(this.inventory.get(slot).pop());
+					
+					try{							
+						data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+					}
+				catch (IOException e) { 
+						System.out.println(e.getMessage());
+					}
+					
+				}
+				else {
+					System.out.println("This item is sold out");
+				}
+			}
+			else {
+				System.out.println("Insufficient Funds.");
+			}
+		}
+		else {
+			System.out.println("Invalid item selected");
 		}
 		
-		else {
-			BigDecimal temp = currentBalance;
-			currentBalance = currentBalance.subtract(getProductPrice(slot));
-			purchases.add(this.inventory.get(slot).pop());
-		try{							
-				data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
-			}
-		catch (IOException e) { 
-				System.out.println(e.getMessage());
-			}
-		}
 	}	
 
 	public void finishTransaction() {
