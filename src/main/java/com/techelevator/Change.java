@@ -1,28 +1,28 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 public class Change {
 	
 	private int quarters = 0;
 	private int dimes = 0;
 	private int nickels = 0;
+	private int convChange = 0;
 	
-	public Change(BigDecimal ) {
+	public void getChange(BigDecimal change){
+		convChange = change.multiply(new BigDecimal("100")).intValueExact();
 		
-	}
-	
-	public void changeOut(int change){
-		
-	while (change >= 25){
+	while (convChange >= 25){
         quarters = quarters + 1;
-        change = change - 25;
+        convChange = convChange - 25;
     }
-    while (change >= 10){
+    while (convChange >= 10){
         dimes = dimes + 1;
-        change = change - 10;
+        convChange = convChange - 10;
     }
-    while (change >= 5){
+    while (convChange >= 5){
         nickels = nickels + 1;
-        change = change - 5;
+        convChange = convChange - 5;
     }
 //    System.out.printf("\nHere's your change:\n%d quarters, %d dimes, %d nickels and %d pennies!",
 //        quarters, dimes, nickels, change);
@@ -31,5 +31,17 @@ public class Change {
 	@Override
 	public String toString() {
 		return "Change [quarters=" + quarters + ", dimes=" + dimes + ", nickels=" + nickels + "]";
+	}
+
+	public int getQuarters() {
+		return quarters;
+	}
+
+	public int getDimes() {
+		return dimes;
+	}
+
+	public int getNickels() {
+		return nickels;
 	}
 }

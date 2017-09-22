@@ -27,7 +27,7 @@ public class Menu {
 
 	public BigDecimal getDecimalFromUser(String message) {  //use this format to ask simple questions.
 		BigDecimal inputtedDecimal = null;
-		out.println("How much money would you like to add ($1, $2, $5 or $10) ? ");
+		out.println("How much money would you like to add ($1, $2, $5 or $10.) ?");
 		out.flush();
 		do {
 			try {
@@ -65,6 +65,7 @@ public class Menu {
 			int optionNum = i+1;
 			out.println(optionNum+") "+options[i]);
 		}
+		
 		out.print("\nPlease choose an option >>> ");
 		out.flush();
 	}

@@ -1,8 +1,5 @@
 package com.techelevator;
 
-import java.util.Map;
-import java.util.Stack;
-
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -48,35 +45,34 @@ public class VendingMachineCLI {
 		
 		while(true) {
 			String choice = (String)menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
-			
+			// 		System.out.println("\nCurrent Balance $" + getBalance());
 			if(choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				String choice1 = (String)menu.getChoiceFromOptions(SELECT_VM_ITEMS_OPTIONS);
 				
 				while(true) {
 					if(choice1.equals(SELECT_VM_ITEMS_CHIPS)) {
 						for (int i = 1; i < 5; i++) {
-							//System.out.println("A" + i + "  " + newVM.getProductName("A" + i) + "  $" + newVM.getProductPrice("A" + i) + "  (" + newVM.getProductQuant("A" + i) + ")");
 							System.out.println(String.format("%-5s %-25s %1s %-5s %1s %1d %1s", "A"+ i, newVM.getProductName("A" + i), "$", newVM.getProductPrice("A" + i), "(", newVM.getProductQuant("A" + i), ")"));
 						}  
 						break;
 					}
 					else if (choice1.equals(SELECT_VM_ITEMS_CANDY)) {
 						for (int i = 1; i < 5; i++) {
-							System.out.println("B" + i + " " + newVM.getProductName("B" + i) + " $" + newVM.getProductPrice("B" + i));
+							System.out.println(String.format("%-5s %-25s %1s %-5s %1s %1d %1s", "A"+ i, newVM.getProductName("B" + i), "$", newVM.getProductPrice("B" + i), "(", newVM.getProductQuant("B" + i), ")"));
 						}
 						break;
 					}
 						
 					else if (choice1.equals(SELECT_VM_ITEMS_DRINKS)) {
 						for (int i = 1; i < 5; i++) {
-							System.out.println("C" + i + " " + newVM.getProductName("C" + i) + " $" + newVM.getProductPrice("C" + i));
+							System.out.println(String.format("%-5s %-25s %1s %-5s %1s %1d %1s", "A"+ i, newVM.getProductName("C" + i), "$", newVM.getProductPrice("C" + i), "(", newVM.getProductQuant("C" + i), ")"));
 						}
 						break;
 					}
 						
 					else if (choice1.equals(SELECT_VM_ITEMS_GUM)) {
 						for (int i = 1; i < 5; i++) {
-							System.out.println("D" + i + " " + newVM.getProductName("D" + i) + " $" + newVM.getProductPrice("D" + i));
+							System.out.println(String.format("%-5s %-25s %1s %-5s %1s %1d %1s", "D"+ i, newVM.getProductName("D" + i), "$", newVM.getProductPrice("D" + i), "(", newVM.getProductQuant("D" + i), ")"));
 						}
 						break;
 					}
@@ -84,19 +80,29 @@ public class VendingMachineCLI {
 						break;
 					}
 				}
-							
+
 			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				String choice2 = (String)menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 				
 				while (true) {
+					String choice2 = (String)menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+					
 					if (choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){
-						// feed money
+						String choice2a = (String)menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
+						newVM.addMoney(menu.getDecimalFromUser("message"));
+						
+						if (choice2a.equals("1")) {
+							newVM.addMoney(menu.getDecimalFromUser("message"));
+							break;
+						}
+						else if (choice2a.equals("2")) {
+							break;
+						}
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
 						// Select items
-						String choice3 = (String)menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);
 						
 						while (true) {
+							String choice3 = (String)menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);
 							if (choice3.equals(SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS)) {
 								// List items
 							}
