@@ -6,10 +6,6 @@ public class Change {
 	private int dimes = 0;
 	private int nickels = 0;
 	
-	public Change(BigDecimal ) {
-		
-	}
-	
 	public void changeOut(int change){
 		
 	while (change >= 25){

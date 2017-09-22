@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ public class VendingMachine {
 	private Map<String, Stack<Product>> inventory = null; // Map passed from CLI
 	//private Stack<Product> purchases = new Stack<>(); // List to hold customer purchases
 	private BigDecimal currentBalance = new BigDecimal("0.00");
-	
+	private WriteFile data = new WriteFile("log.txt", true);
 	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
 	}
@@ -32,6 +33,13 @@ public class VendingMachine {
 	
 	public void addMoney(BigDecimal dollars) { // change return ??
 		currentBalance = currentBalance.add(dollars);
+	try{							 //Date			Time		Action	   Add	 Bal
+		 							 //01/01/2016 12:00:00 PM FEED MONEY: $5.00 $5.00
+		data.writeToFile("ADD MONEY" + "$" + dollars + "$" + currentBalance);
+	}
+	catch (IOException e) { 
+		System.out.println(e.getMessage());
+	}
 	}
 	
 	public BigDecimal getProductPrice(String slot) {
