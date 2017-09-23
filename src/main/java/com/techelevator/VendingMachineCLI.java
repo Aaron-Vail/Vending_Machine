@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.Scanner;
+
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -85,15 +87,18 @@ public class VendingMachineCLI {
 					}
 				}
 
-			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+			} else if(choice.equals(MAIN_MENU_OPTION_PURCHASE)) {  // Main Menu Option #2 : Purchase Menu
 				
 				while (true) {
 					String choice2 = (String)menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					
-					if (choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){
+					if (choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){  // 
 						
 						String choice2a = (String)menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
+						
 						newVM.addMoney(menu.getDecimalFromUser("message"));
+						
+						System.out.println("\nCurrent Balance $" + newVM.getBalance());
 						
 						if (choice2a.equals("1")) {
 							newVM.addMoney(menu.getDecimalFromUser("message"));
@@ -104,17 +109,20 @@ public class VendingMachineCLI {
 						}
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+
 //						newVM.purchase(slot);
+
+						System.out.println("Please enter the location of your purchase: (ex. A1, B2");
+						Scanner userInput = new Scanner(System.in);
+						String line = userInput.nextLine();
+						newVM.purchase(line);
+						System.out.println("\nCurrent Balance $" + newVM.getBalance());
+
 						
-						while (true) {
-							String choice3 = (String)menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);
-							if (choice3.equals(SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS)) {
-								// List items
-							}
-							else if (choice3.equals(SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE)) {
-								
-							}
-						}
+					}
+					else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
+						// call newVM.
+						break;
 					}
 				}
 					
