@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Change {
 	
@@ -8,9 +10,13 @@ public class Change {
 	private int dimes = 0;
 	private int nickels = 0;
 	private int convChange = 0;
+	private BigDecimal changeToReturn = null;
 	
+	
+	List<Integer> custChange = new ArrayList<>();
 
-	public void getChange(BigDecimal change){
+	public List<Integer> getChange(BigDecimal change){
+		changeToReturn = change;
 		convChange = change.multiply(new BigDecimal("100")).intValueExact();
 		
 	while (convChange >= 25){
@@ -28,11 +34,17 @@ public class Change {
     }
 //    System.out.printf("\nHere's your change:\n%d quarters, %d dimes, %d nickels and %d pennies!",
 //        quarters, dimes, nickels, change);
+    
+    custChange.add(quarters);
+    custChange.add(dimes);
+    custChange.add(nickels);
+    
+    return custChange;
 	}
 
 	@Override
 	public String toString() {
-		return "Change [quarters=" + quarters + ", dimes=" + dimes + ", nickels=" + nickels + "]";
+		return "Your change is $" + changeToReturn + ".  Quarters: " + quarters + ", dimes: " + dimes + ", nickels: " + nickels;
 	}
 
 	public int getQuarters() {

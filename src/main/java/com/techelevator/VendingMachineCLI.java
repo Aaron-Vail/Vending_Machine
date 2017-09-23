@@ -16,24 +16,17 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_OPTION_FEED_MONEY, 
 															PURCHASE_MENU_OPTION_SELECT_PRODUCT, 
 															PURCHASE_MENU_OPTION_FINISH_TRANSACTION };
-	private static final String SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS = "List items";
-	private static final String SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE = "Enter item to purchase";
-	private static final String[] SELECT_PRODUCT_MENU_OPTIONS = {SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS, 
-															SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE};
-	private static final String FEED_MONEY_OPTION_FEED_MONEY = "Feed money";
-	private static final String FEED_MONEY_OPTION_RETURN_TO_PURCHASE_MENU ="Return to Purchase menu";
-	private static final String[] FEED_MONEY_OPTIONS = {FEED_MONEY_OPTION_FEED_MONEY,
-														FEED_MONEY_OPTION_RETURN_TO_PURCHASE_MENU};
+//	private static final String SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS = "List items";
+//	private static final String SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE = "Enter item to purchase";
+//	private static final String[] SELECT_PRODUCT_MENU_OPTIONS = {SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS, 
+//															SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE};
 	private static final String SELECT_VM_ITEMS_CHIPS = "Chips";
 	private static final String SELECT_VM_ITEMS_CANDY = "Candy"; 
 	private static final String SELECT_VM_ITEMS_DRINKS = "Drinks";
 	private static final String SELECT_VM_ITEMS_GUM = "Gum";
 	private static final String SELECT_VM_ITEMS_Return = "Return to previous menu";
-	private static final String[] SELECT_VM_ITEMS_OPTIONS = {SELECT_VM_ITEMS_CHIPS,
-															SELECT_VM_ITEMS_CANDY,
-															SELECT_VM_ITEMS_DRINKS,
-															SELECT_VM_ITEMS_GUM,
-															SELECT_VM_ITEMS_Return};
+	private static final String[] SELECT_VM_ITEMS_OPTIONS = {SELECT_VM_ITEMS_CHIPS, SELECT_VM_ITEMS_CANDY, SELECT_VM_ITEMS_DRINKS,
+															SELECT_VM_ITEMS_GUM, SELECT_VM_ITEMS_Return};
 	
 	private Menu menu;
 	private VendingMachine newVM = null;
@@ -94,36 +87,36 @@ public class VendingMachineCLI {
 					
 					if (choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)){  // 
 						
-						String choice2a = (String)menu.getChoiceFromOptions(FEED_MONEY_OPTIONS);
-						
 						newVM.addMoney(menu.getDecimalFromUser("message"));
 						
 						System.out.println("\nCurrent Balance $" + newVM.getBalance());
 						
-						if (choice2a.equals("1")) {
+						if (choice2.equals("1")) {
 							newVM.addMoney(menu.getDecimalFromUser("message"));
 							break;
 						}
-						else if (choice2a.equals("2")) {
+						else if (choice2.equals("2")) {
 							break;
 						}
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
 						System.out.println("Please enter the location of your purchase: (ex. A1, B2");
+						@SuppressWarnings("resource")
 						Scanner userInput = new Scanner(System.in);
-						String line = userInput.nextLine();
+						String line = userInput.nextLine().toUpperCase();
 						newVM.purchase(line);
 						System.out.println("\nCurrent Balance $" + newVM.getBalance());
 						
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
-						// call newVM.
+						newVM.finishTransaction();
 						break;
 					}
 				}
 					
 				
 			}
+			//break;
 		}
 	}
 	

@@ -97,10 +97,20 @@ public class VendingMachine {
 	public void finishTransaction() {
 		 
 		// return customer's money  change()
+		if (currentBalance.compareTo(new BigDecimal("0")) != 0) {
+			Change custChange = new Change();
+			List<Integer> changeList = new ArrayList<>();
+			changeList.addAll(custChange.getChange(currentBalance));
 		
+			System.out.println(custChange);		
+		}
 		// currentBalance updated to $0
+		currentBalance = new BigDecimal("0");
 		
 		// the purchases will be "consumed"
+		for (Product bought : purchases) {
+			System.out.println(bought.getSound());
+		}
 	}
 	
 	public boolean isSoldOut(String slot) {
