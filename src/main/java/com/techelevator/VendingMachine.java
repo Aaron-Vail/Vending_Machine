@@ -113,6 +113,8 @@ public class VendingMachine {
 		for (Product bought : purchases) {
 			System.out.println(bought.getSound());
 		}
+		System.out.println("Thank you for your business!");
+		System.exit(1);
 	}
 	
 	public boolean isSoldOut(String slot) {
