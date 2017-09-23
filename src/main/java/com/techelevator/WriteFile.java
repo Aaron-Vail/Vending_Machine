@@ -18,7 +18,7 @@ public class WriteFile {
 	
 	
 	public WriteFile (String filePath) {
-		path = "log.txt";
+		path = "vendingMachineLog.txt";
 	}
 	
 	public WriteFile( String filePath , boolean appendValue ) {
@@ -34,7 +34,7 @@ public class WriteFile {
 		
 		Date today = new Date();
 		
-		printLine.printf("%s  %s", today.toLocaleString(), textLine);
+		printLine.printf("%s %s", today.toLocaleString(), textLine + "\n");
 		
 		printLine.close();
 		

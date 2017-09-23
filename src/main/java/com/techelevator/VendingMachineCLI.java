@@ -104,7 +104,7 @@ public class VendingMachineCLI {
 						}
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
-						newVM.purchase(slot);
+//						newVM.purchase(slot);
 						
 						while (true) {
 							String choice3 = (String)menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);

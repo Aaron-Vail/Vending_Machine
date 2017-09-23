@@ -12,12 +12,12 @@ public class VendingMachine {
 	private Map<String, Stack<Product>> inventory = null; // Map passed from CLI
 	private List<Product> purchases = new ArrayList<>(); // List to hold customer purchases
 	private BigDecimal currentBalance = new BigDecimal("0.00");
-<<<<<<< HEAD
+
 	private WriteFile data = new WriteFile("log.txt", true);
-=======
+
 	private boolean soldOut = false;
 	
->>>>>>> fb941f740199d163719ab857040e5348d116b8d7
+
 	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
 	}
@@ -40,7 +40,9 @@ public class VendingMachine {
 	public void addMoney(BigDecimal dollars) { // change return ??
 		currentBalance = currentBalance.add(dollars);
 	try{							 
-		data.writeToFile("ADD MONEY" + "$" + dollars + "$" + currentBalance);
+	
+		data.writeToFile("ADD MONEY " + "$" + dollars + ".00 " + " $" + currentBalance);
+		
 	}
 	catch (IOException e) { 
 		System.out.println(e.getMessage());
