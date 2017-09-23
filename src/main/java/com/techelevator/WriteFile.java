@@ -11,13 +11,12 @@ import java.util.Date;
 
 public class WriteFile {
 	
-	//private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
 	private String path;
 	private boolean appendToFile = false;
 	
 	
 	public WriteFile (String filePath) {
-		path = "log.txt";
+		path = "vendingMachineLog.txt";
 	}
 	
 	public WriteFile( String filePath , boolean appendValue ) {
@@ -34,7 +33,7 @@ public class WriteFile {
 		
 		Date today = new Date();
 		
-		printLine.printf("%s  %s", today.toLocaleString(), textLine);
+		printLine.printf("%s %s", today.toLocaleString(), textLine + "\n");
 		
 		printLine.close();
 		

@@ -40,7 +40,9 @@ public class VendingMachine {
 	public void addMoney(BigDecimal dollars) { // change return ??
 		currentBalance = currentBalance.add(dollars);
 	try{							 
-		data.writeToFile("ADD MONEY" + "$" + dollars + "$" + currentBalance);
+	
+		data.writeToFile("ADD MONEY " + "$" + dollars + ".00 " + " $" + currentBalance);
+		
 	}
 	catch (IOException e) { 
 		System.out.println(e.getMessage());

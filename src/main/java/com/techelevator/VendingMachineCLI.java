@@ -100,12 +100,16 @@ public class VendingMachineCLI {
 						}
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+
+//						newVM.purchase(slot);
+
 						System.out.println("Please enter the location of your purchase: (ex. A1, B2");
 						@SuppressWarnings("resource")
 						Scanner userInput = new Scanner(System.in);
 						String line = userInput.nextLine().toUpperCase();
 						newVM.purchase(line);
 						System.out.println("\nCurrent Balance $" + newVM.getBalance());
+
 						
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
