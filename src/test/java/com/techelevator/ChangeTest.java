@@ -33,6 +33,9 @@ public class ChangeTest {
 	@Test 
 	public void testQuartersNickels() {
 		sut.getChange(new BigDecimal("1.15"));
+		
+		
+		
 		assertEquals(4, sut.getQuarters());
 		assertEquals(1, sut.getDimes());
 		assertEquals(1, sut.getNickels());
