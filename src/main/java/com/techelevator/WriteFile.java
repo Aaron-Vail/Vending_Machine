@@ -5,10 +5,6 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Date;
 
-
-
-
-
 public class WriteFile {
 	
 	private String path;

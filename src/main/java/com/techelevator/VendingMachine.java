@@ -22,6 +22,10 @@ public class VendingMachine {
 		this.inventory = inventory;
 	}
 	
+	public List<Product> getPurchases() {
+		return purchases;
+	}
+	
 	@Override
 	public String toString() {
 		String display = null;
@@ -68,10 +72,8 @@ public class VendingMachine {
 	}
 	
 	public void purchase(String slot) {
-		if (currentBalance.compareTo(getProductPrice(slot)) == -1 ) {
-			System.out.println("Insufficient Funds.");
-		}
 		
+<<<<<<< HEAD
 		else {
 			BigDecimal temp = currentBalance;
 			currentBalance = currentBalance.subtract(getProductPrice(slot));
@@ -79,11 +81,37 @@ public class VendingMachine {
 		try{		
 			data.writeToFile(String.format("%-18s %-6s %-8s %s", getProductName(slot), slot, "$"+temp, "$"+currentBalance));
 //				data.writeToFile(getProductName(slot) + slot1 + "$" + temp + "$" + currentBalance);
+=======
+		if (inventory.containsKey(slot)) {
+			if (currentBalance.compareTo(getProductPrice(slot)) >= 0 ) {
+				if (inventory.get(slot).size() > 0) {
+					BigDecimal temp = currentBalance;
+					currentBalance = currentBalance.subtract(getProductPrice(slot));
+					purchases.add(this.inventory.get(slot).pop());
+					
+					try{							
+						data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+					}
+					catch (IOException e) { 
+						System.out.println(e.getMessage());
+					}
+					
+				}
+				else {
+					// Add a comment to this line
+					System.out.println("This item is sold out");
+				}
+>>>>>>> d7c54d64fb0bb1901bbf71204adcd9bee508cece
 			}
-		catch (IOException e) { 
-				System.out.println(e.getMessage());
+			else {
+					System.out.println("Insufficient Funds.");
 			}
-		}
+		}		 		
+			else {
+				System.out.println("Invalid item selected");
+			}
+					//Add a comment to this line		 	
+
 	}	
 
 	public void finishTransaction() {
@@ -94,7 +122,7 @@ public class VendingMachine {
 			List<Integer> changeList = new ArrayList<>();
 			changeList.addAll(custChange.getChange(currentBalance));
 		
-			System.out.println(custChange);		
+			System.out.println("\n" + custChange);		
 		}
 		// 	currentBalance updated to $0
 			currentBalance = new BigDecimal("0");
@@ -112,7 +140,7 @@ public class VendingMachine {
 			System.out.println(bought.getSound());
 		}
 		System.out.println("Thank you for your business!");
-		System.exit(1);
+		//System.exit(1);
 	}
 	
 	public boolean isSoldOut(String slot) {

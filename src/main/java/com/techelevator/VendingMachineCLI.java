@@ -16,10 +16,6 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_OPTION_FEED_MONEY, 
 															PURCHASE_MENU_OPTION_SELECT_PRODUCT, 
 															PURCHASE_MENU_OPTION_FINISH_TRANSACTION };
-//	private static final String SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS = "List items";
-//	private static final String SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE = "Enter item to purchase";
-//	private static final String[] SELECT_PRODUCT_MENU_OPTIONS = {SELECT_PRODUCT_MENU_OPTION_LIST_ITEMS, 
-//															SELECT_PRODUCT_MENU_OPTION_ENTER_ITEM_TO_PURCHASE};
 	private static final String SELECT_VM_ITEMS_CHIPS = "Chips";
 	private static final String SELECT_VM_ITEMS_CANDY = "Candy"; 
 	private static final String SELECT_VM_ITEMS_DRINKS = "Drinks";
@@ -101,34 +97,30 @@ public class VendingMachineCLI {
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
 
-//						newVM.purchase(slot);
-
 						System.out.println("Please enter the location of your purchase: (ex. A1, B2");
 						@SuppressWarnings("resource")
 						Scanner userInput = new Scanner(System.in);
 						String line = userInput.nextLine().toUpperCase();
 						newVM.purchase(line);
 						System.out.println("\nCurrent Balance $" + newVM.getBalance());
-
 						
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
 						newVM.finishTransaction();
+						newVM = new VendingMachine(new VendingMachineFileReader().loadInventory());
 						break;
 					}
 				}
 					
 				
 			}
-			//break;
 		}
 	}
 	
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
-		
-		
+				
 		cli.run();
 	}
 }
