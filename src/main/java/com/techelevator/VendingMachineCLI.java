@@ -107,6 +107,7 @@ public class VendingMachineCLI {
 					}
 					else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
 						newVM.finishTransaction();
+						newVM = new VendingMachine(new VendingMachineFileReader().loadInventory());
 						break;
 					}
 				}

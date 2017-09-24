@@ -112,7 +112,7 @@ public class VendingMachine {
 			List<Integer> changeList = new ArrayList<>();
 			changeList.addAll(custChange.getChange(currentBalance));
 		
-			System.out.println(custChange);		
+			System.out.println("\n" + custChange);		
 		}
 		// currentBalance updated to $0
 		currentBalance = new BigDecimal("0");
