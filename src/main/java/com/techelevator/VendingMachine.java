@@ -73,15 +73,6 @@ public class VendingMachine {
 	
 	public void purchase(String slot) {
 		
-<<<<<<< HEAD
-		else {
-			BigDecimal temp = currentBalance;
-			currentBalance = currentBalance.subtract(getProductPrice(slot));
-			purchases.add(this.inventory.get(slot).pop());
-		try{		
-			data.writeToFile(String.format("%-18s %-6s %-8s %s", getProductName(slot), slot, "$"+temp, "$"+currentBalance));
-//				data.writeToFile(getProductName(slot) + slot1 + "$" + temp + "$" + currentBalance);
-=======
 		if (inventory.containsKey(slot)) {
 			if (currentBalance.compareTo(getProductPrice(slot)) >= 0 ) {
 				if (inventory.get(slot).size() > 0) {
@@ -89,8 +80,8 @@ public class VendingMachine {
 					currentBalance = currentBalance.subtract(getProductPrice(slot));
 					purchases.add(this.inventory.get(slot).pop());
 					
-					try{							
-						data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+					try{		
+						data.writeToFile(String.format("%-18s %-6s %-8s %s", getProductName(slot), slot, "$"+temp, "$"+currentBalance));
 					}
 					catch (IOException e) { 
 						System.out.println(e.getMessage());
@@ -101,7 +92,7 @@ public class VendingMachine {
 					// Add a comment to this line
 					System.out.println("This item is sold out");
 				}
->>>>>>> d7c54d64fb0bb1901bbf71204adcd9bee508cece
+
 			}
 			else {
 					System.out.println("Insufficient Funds.");

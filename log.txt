@@ -1,0 +1,11 @@
+Sep 23, 2017 9:24:01 PM ADD MONEY                 $10.00   $10.00
+Sep 23, 2017 9:24:08 PM ADD MONEY                 $5.00    $15.00
+Sep 23, 2017 9:24:10 PM ADD MONEY                 $1.00    $16.00
+Sep 23, 2017 9:24:11 PM ADD MONEY                 $2.00    $18.00
+Sep 23, 2017 9:24:15 PM Little League Chew D2     $18.00   $17.05
+Sep 23, 2017 9:24:19 PM U-Chews            D1     $17.05   $16.20
+Sep 23, 2017 9:24:21 PM Chiclets           D3     $16.20   $15.45
+Sep 23, 2017 9:24:24 PM Mountain Melter    C3     $15.45   $13.95
+Sep 23, 2017 9:24:26 PM Dr. Salt           C2     $13.95   $12.45
+Sep 23, 2017 9:24:29 PM Cola               C1     $12.45   $11.20
+Sep 23, 2017 9:24:31 PM GIVE CHANGE               $11.20   $0.00
