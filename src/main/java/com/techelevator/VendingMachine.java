@@ -41,8 +41,8 @@ public class VendingMachine {
 		currentBalance = currentBalance.add(dollars);
 	try{							 
 		
-		
-		data.writeToFile("ADD MONEY " + "$" + dollars + ".00 " + " $" + currentBalance);
+		data.writeToFile(String.format("%-25s %-8s %s", "ADD MONEY", "$"+dollars+".00", "$"+currentBalance));
+//		data.writeToFile("ADD MONEY " + "$" + dollars + ".00 " + " $" + currentBalance);
 		
 	}
 	catch (IOException e) { 
@@ -76,8 +76,9 @@ public class VendingMachine {
 			BigDecimal temp = currentBalance;
 			currentBalance = currentBalance.subtract(getProductPrice(slot));
 			purchases.add(this.inventory.get(slot).pop());
-		try{							
-				data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+		try{		
+			data.writeToFile(String.format("%-18s %-6s %-8s %s", getProductName(slot), slot, "$"+temp, "$"+currentBalance));
+//				data.writeToFile(getProductName(slot) + slot1 + "$" + temp + "$" + currentBalance);
 			}
 		catch (IOException e) { 
 				System.out.println(e.getMessage());
@@ -86,7 +87,7 @@ public class VendingMachine {
 	}	
 
 	public void finishTransaction() {
-		 
+		BigDecimal beforeFinal = currentBalance;
 		// return customer's money  change()
 		if (currentBalance.compareTo(new BigDecimal("0")) != 0) {
 			Change custChange = new Change();
@@ -94,6 +95,14 @@ public class VendingMachine {
 			changeList.addAll(custChange.getChange(currentBalance));
 		
 			System.out.println(custChange);		
+		}
+		// 	currentBalance updated to $0
+			currentBalance = new BigDecimal("0");
+		try{	
+			data.writeToFile(String.format("%10s %20s %7s", "GIVE CHANGE", "$"+beforeFinal, "$"+currentBalance+".00"));
+		}
+	catch (IOException e) { 
+			System.out.println(e.getMessage());
 		}
 		// currentBalance updated to $0
 		currentBalance = new BigDecimal("0");

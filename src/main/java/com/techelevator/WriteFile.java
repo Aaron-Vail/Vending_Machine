@@ -15,11 +15,11 @@ public class WriteFile {
 	private boolean appendToFile = false;
 	
 	
-	public WriteFile (String filePath) {
-		path = "vendingMachineLog.txt";
-	}
+//	public WriteFile (String filePath) {
+//		path = "vendingMachineLog.txt";
+//	}
 	
-	public WriteFile( String filePath , boolean appendValue ) {
+	public WriteFile(String filePath , boolean appendValue ) {
 		path = filePath;
 		appendToFile = appendValue;
 		}
