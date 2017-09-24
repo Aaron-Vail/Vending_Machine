@@ -51,8 +51,16 @@ public class VendingMachineTest {
 	
 	@Test
 	public void testNotEnoughMoney() {
-		sut.addMoney(new BigDecimal("2.00"));
+		sut.addMoney(new BigDecimal("0.50"));
 		sut.purchase("A1");
+		sut.finishTransaction();
+		assertEquals(new BigDecimal("0"), sut.getBalance());
+	}
+	
+	@Test
+	public void testNotValidItem() {
+		sut.addMoney(new BigDecimal("2.00"));
+		sut.purchase("C1");
 		sut.finishTransaction();
 		assertEquals(new BigDecimal("0"), sut.getBalance());
 	}
