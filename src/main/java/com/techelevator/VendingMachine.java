@@ -22,6 +22,10 @@ public class VendingMachine {
 		this.inventory = inventory;
 	}
 	
+	public List<Product> getPurchases() {
+		return purchases;
+	}
+	
 	@Override
 	public String toString() {
 		String display = null;
@@ -68,21 +72,36 @@ public class VendingMachine {
 	}
 	
 	public void purchase(String slot) {
-		if (currentBalance.compareTo(getProductPrice(slot)) == -1 ) {
-			System.out.println("Insufficient Funds.");
-		}
 		
-		else {
-			BigDecimal temp = currentBalance;
-			currentBalance = currentBalance.subtract(getProductPrice(slot));
-			purchases.add(this.inventory.get(slot).pop());
-		try{							
-				data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+		if (inventory.containsKey(slot)) {
+			if (currentBalance.compareTo(getProductPrice(slot)) >= 0 ) {
+				if (inventory.get(slot).size() > 0) {
+					BigDecimal temp = currentBalance;
+					currentBalance = currentBalance.subtract(getProductPrice(slot));
+					purchases.add(this.inventory.get(slot).pop());
+					
+					try{							
+						data.writeToFile(getProductName(slot) + slot + "$" + temp + "$" + currentBalance);
+					}
+					catch (IOException e) { 
+						System.out.println(e.getMessage());
+					}
+					
+				}
+				else {
+					// Add a comment to this line
+					System.out.println("This item is sold out");
+				}
 			}
-		catch (IOException e) { 
-				System.out.println(e.getMessage());
+			else {
+					System.out.println("Insufficient Funds.");
 			}
-		}
+		}		 		
+			else {
+				System.out.println("Invalid item selected");
+			}
+					//Add a comment to this line		 	
+
 	}	
 
 	public void finishTransaction() {
@@ -103,7 +122,7 @@ public class VendingMachine {
 			System.out.println(bought.getSound());
 		}
 		System.out.println("Thank you for your business!");
-		System.exit(1);
+		//System.exit(1);
 	}
 	
 	public boolean isSoldOut(String slot) {
