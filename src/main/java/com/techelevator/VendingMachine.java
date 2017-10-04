@@ -14,9 +14,6 @@ public class VendingMachine {
 	private BigDecimal currentBalance = new BigDecimal("0.00");
 
 	private WriteFile data = new WriteFile("log.txt", true);
-	
-	private boolean soldOut = false;
-	
 
 	public VendingMachine(Map<String, Stack<Product>> inventory) { // Constructor
 		this.inventory = inventory;
@@ -41,22 +38,21 @@ public class VendingMachine {
 		return currentBalance;
 	}
 	
-	public void addMoney(BigDecimal dollars) { // change return ??
+	public void addMoney(BigDecimal dollars) throws IOException { // change return ??
 		currentBalance = currentBalance.add(dollars);
-	try{							 
+					 
 		
 		data.writeToFile(String.format("%-25s %-8s %s", "ADD MONEY", "$"+dollars+".00", "$"+currentBalance));
 //		data.writeToFile("ADD MONEY " + "$" + dollars + ".00 " + " $" + currentBalance);
 		
-	}
-	catch (IOException e) { 
-		System.out.println(e.getMessage());
-	}
+
 	}
 	
 	public BigDecimal getProductPrice(String slot) {
 		BigDecimal itemPrice = null;
-		itemPrice = this.inventory.get(slot).peek().getPrice();
+		if(getProductQuant(slot) != 0){
+			itemPrice = this.inventory.get(slot).peek().getPrice();
+		}
 		return itemPrice;
 	}
 	
@@ -71,17 +67,18 @@ public class VendingMachine {
 		return productQuant;
 	}
 	
-	public void purchase(String slot) {
+	public void purchase(String slot) throws VendingMachineException {
 		
 		if (inventory.containsKey(slot)) {
 			if (currentBalance.compareTo(getProductPrice(slot)) >= 0 ) {
 				if (inventory.get(slot).size() > 0) {
 					BigDecimal temp = currentBalance;
 					currentBalance = currentBalance.subtract(getProductPrice(slot));
+					String productName = getProductName(slot);
 					purchases.add(this.inventory.get(slot).pop());
 					
 					try{		
-						data.writeToFile(String.format("%-18s %-6s %-8s %s", getProductName(slot), slot, "$"+temp, "$"+currentBalance));
+						data.writeToFile(String.format("%-18s %-6s %-8s %s", productName, slot, "$"+temp, "$"+currentBalance));
 					}
 					catch (IOException e) { 
 						System.out.println(e.getMessage());
@@ -90,16 +87,16 @@ public class VendingMachine {
 				}
 				else {
 					// Add a comment to this line
-					System.out.println("This item is sold out");
+					throw new VendingMachineException("This item is sold out");
 				}
 
 			}
 			else {
-					System.out.println("Insufficient Funds.");
+				throw new VendingMachineException("Insufficient Funds.");
 			}
 		}		 		
 			else {
-				System.out.println("Invalid item selected");
+				throw new VendingMachineException("Invalid item selected");
 			}
 					//Add a comment to this line		 	
 
@@ -110,10 +107,10 @@ public class VendingMachine {
 		// return customer's money  change()
 		if (currentBalance.compareTo(new BigDecimal("0")) != 0) {
 			Change custChange = new Change();
-			List<Integer> changeList = new ArrayList<>();
-			changeList.addAll(custChange.getChange(currentBalance));
+			
+			custChange.getChange(currentBalance);
 		
-			System.out.println("\n" + custChange);		
+			System.out.println("\n" + custChange);	
 		}
 		// 	currentBalance updated to $0
 			currentBalance = new BigDecimal("0");
@@ -123,25 +120,15 @@ public class VendingMachine {
 	catch (IOException e) { 
 			System.out.println(e.getMessage());
 		}
-		// currentBalance updated to $0
-		currentBalance = new BigDecimal("0");
 		
 		// the purchases will be "consumed"
 		for (Product bought : purchases) {
 			System.out.println(bought.getSound());
 		}
+		purchases.clear();
 		System.out.println("Thank you for your business!");
 		//System.exit(1);
 	}
 	
-	public boolean isSoldOut(String slot) {
-		if (getProductQuant(slot) == 0) {
-			soldOut = true;
-		}
-		else {
-			soldOut = false;
-		}
-		return soldOut;
-	}
 }
 

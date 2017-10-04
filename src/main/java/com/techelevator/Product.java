@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public abstract class Product {
 	@SuppressWarnings("unused")
-	private String sound;
 	private String name;
 	private BigDecimal price;
 	
@@ -21,10 +20,6 @@ public abstract class Product {
 	
 	public BigDecimal getPrice() {
 		return price;
-	}
-
-	public void setSound(String sound) {
-		this.sound = sound;
 	}
 
 	public void setName(String name) {

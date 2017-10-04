@@ -9,3 +9,27 @@ Sep 23, 2017 9:24:24 PM Mountain Melter    C3     $15.45   $13.95
 Sep 23, 2017 9:24:26 PM Dr. Salt           C2     $13.95   $12.45
 Sep 23, 2017 9:24:29 PM Cola               C1     $12.45   $11.20
 Sep 23, 2017 9:24:31 PM GIVE CHANGE               $11.20   $0.00
+Sep 28, 2017 2:05:19 PM ADD MONEY                 $6.00    $6.00
+Sep 28, 2017 2:05:32 PM ADD MONEY                 $5.00    $11.00
+Sep 28, 2017 2:05:42 PM Triplemint         D4     $11.00   $10.25
+Sep 28, 2017 2:05:44 PM Triplemint         D4     $10.25   $9.50
+Sep 28, 2017 2:05:45 PM Triplemint         D4     $9.50    $8.75
+Sep 28, 2017 2:05:46 PM Triplemint         D4     $8.75    $8.00
+Sep 28, 2017 2:06:23 PM ADD MONEY                 $5.00    $5.00
+Sep 28, 2017 2:06:29 PM Triplemint         D4     $5.00    $4.25
+Sep 28, 2017 2:06:33 PM Wonka Bar          B3     $4.25    $2.75
+Sep 28, 2017 2:06:35 PM GIVE CHANGE                $2.75   $0.00
+Sep 28, 2017 2:06:45 PM ADD MONEY                 $1.00    $1.00
+Sep 28, 2017 2:06:49 PM ADD MONEY                 $6.00    $7.00
+Sep 28, 2017 2:06:54 PM Grain Waves        A3     $7.00    $4.25
+Sep 28, 2017 2:07:00 PM Cowtales           B2     $4.25    $2.75
+Sep 28, 2017 2:07:05 PM Cowtales           B2     $2.75    $1.25
+Sep 28, 2017 2:07:22 PM Triplemint         D4     $1.25    $0.50
+Sep 28, 2017 2:07:31 PM ADD MONEY                 $0.25.00 $0.75
+Sep 28, 2017 2:07:37 PM Triplemint         D4     $0.75    $0.00
+Sep 28, 2017 2:07:40 PM GIVE CHANGE                $0.00   $0.00
+Sep 28, 2017 2:20:26 PM ADD MONEY                 $10.00   $10.00
+Sep 28, 2017 2:20:29 PM Triplemint         D4     $10.00   $9.25
+Sep 28, 2017 2:20:31 PM Triplemint         D4     $9.25    $8.50
+Sep 28, 2017 2:20:33 PM Triplemint         D4     $8.50    $7.75
+Sep 28, 2017 2:20:34 PM GIVE CHANGE                $7.75   $0.00
