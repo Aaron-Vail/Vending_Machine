@@ -2,6 +2,7 @@ package com.techelevator;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class VendingMachineTest {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		sut.addMoney(new BigDecimal("2.00"));
 		sut.purchase("A1");
 		sut.finishTransaction();
@@ -39,7 +40,7 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void testMultiPurchase() {
+	public void testMultiPurchase() throws Exception {
 		sut.addMoney(new BigDecimal("3.00"));
 		sut.purchase("A1");
 		sut.purchase("A1");
@@ -50,7 +51,7 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void testNotEnoughMoney() {
+	public void testNotEnoughMoney() throws Exception {
 		sut.addMoney(new BigDecimal("0.50"));
 		sut.purchase("A1");
 		sut.finishTransaction();
@@ -58,7 +59,7 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void testNotValidItem() {
+	public void testNotValidItem() throws Exception {
 		sut.addMoney(new BigDecimal("2.00"));
 		sut.purchase("C1");
 		sut.finishTransaction();
